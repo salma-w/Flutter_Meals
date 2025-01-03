@@ -48,7 +48,7 @@ final Meal meal;
         SizedBox(height: 14,),
         Text('Ingrededients',
         style:Theme.of(context).textTheme.titleLarge!.copyWith(
-          color:Theme.of(context).colorScheme.onBackground,
+          color:Theme.of(context).colorScheme.onSurface,
         ),
         ),
         SizedBox(height: 14,),
@@ -61,7 +61,7 @@ final Meal meal;
         const  SizedBox(height: 24,),
           Text('Steps',
         style:Theme.of(context).textTheme.titleLarge!.copyWith(
-          color:Theme.of(context).colorScheme.onBackground,
+          color:Theme.of(context).colorScheme.onSurface,
         ),
         ),
              SizedBox(height: 14,),
