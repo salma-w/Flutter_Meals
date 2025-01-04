@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/favorites_provider.dart';
-import 'package:meals/providers/meals_provider.dart';
+import 'package:meals/providers/filters_provider.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/main_drawer.dart';
 import 'package:meals/screens/filters.dart';
 
-const kInitialFilters={
-     Filter.glutenFree:false,
-     Filter.lactoseFree:false,
-     Filter.vegetarian:false,
-     Filter.vegan:false};
+//const kInitialFilters={
+   //  Filter.glutenFree:false,
+   //  Filter.lactoseFree:false,
+   //  Filter.vegetarian:false,
+   // Filter.vegan:false};
 
 class TabsScreen extends ConsumerStatefulWidget{
  //class TabsScreen extends StatefulWidget{
@@ -27,12 +27,7 @@ const TabsScreen({super.key});
   
 class _TabsScreenState extends ConsumerState<TabsScreen>{
   
-   Map<Filter,bool> _selectedFilters= {
-     Filter.glutenFree:false,
-     Filter.lactoseFree:false,
-     Filter.vegetarian:false,
-     Filter.vegan:false,
-  };
+
 
   int _selectedPageIndex=0;
   //final List<Meal> _favoritesmeals=[];
@@ -72,35 +67,23 @@ class _TabsScreenState extends ConsumerState<TabsScreen>{
 
      if(identifier=='filters')
      {
-        final result= await Navigator.of(context).push<Map<Filter,bool>>(
+         await Navigator.of(context).push<Map<Filter,bool>>(
           MaterialPageRoute(
-            builder: (ctx)=>  FiltersScreen(currentFilters: _selectedFilters,)
+            builder: (ctx)=>   FiltersScreen()//currentFilters: _selectedFilters,)
         ),
         );     
-        setState(() {
-                  _selectedFilters=result??kInitialFilters;
-
-        });   
+       // setState(() {
+                  //_selectedFilters=result??kInitialFilters;
+      //  });   
         }
   
 }
   @override
   Widget build(BuildContext context) {
    // final availableMeals=dummyMeals.where((meal)
-   final meals=ref.watch(mealsProvider);
-  final availableMeals=meals.where((meal)
-    {
-    if(_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree){
-    return false;}
-    if(_selectedFilters[Filter.lactoseFree]! && !meal.isLactoseFree){
-    return false;}
-    if(_selectedFilters[Filter.vegetarian]! && !meal.isVegetarian){
-    return false;}
-    if(_selectedFilters[Filter.vegan]! && !meal.isVegan){
-    return false;}
-    
-    return true;
-  }).toList();
+  // final meals=ref.watch(mealsProvider);
+ // final activeFilters= ref.watch(filtersProvider);
+  final availableMeals=ref.watch(filterMealsProvider);
     
     Widget activePage= CategoriesScreen(
      // onToggleFavorite:_toggleMealFavoriteStatus,

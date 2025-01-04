@@ -16,7 +16,8 @@ final Meal meal;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
+    final favoriateMeals= ref.watch(favoriateMealsProvider);
+    final isFavoriate=favoriateMeals.contains(meal);
     return Scaffold(
       appBar:  AppBar( 
         title:Text(meal.title),
@@ -32,7 +33,7 @@ final Meal meal;
            )
     );
                      },
-          icon: const Icon(Icons.star)
+          icon:  Icon(isFavoriate?Icons.star:Icons.star_border)
           ),
         ],
       ),
@@ -52,8 +53,8 @@ final Meal meal;
         ),
         ),
         SizedBox(height: 14,),
-        for(final Ingrededient in meal.ingredients)
-          Text(Ingrededient,style:Theme.of(context).textTheme.bodyMedium!.copyWith(
+        for(final ingrededient in meal.ingredients)
+          Text(ingrededient,style:Theme.of(context).textTheme.bodyMedium!.copyWith(
           color:Theme.of(context).colorScheme.primary,
           fontWeight: FontWeight.bold
         ),          
