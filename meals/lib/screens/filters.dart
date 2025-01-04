@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/filters_provider.dart';
 
 class FiltersScreen extends ConsumerWidget {
+  const FiltersScreen({super.key});
+
 //const FiltersScreen({super.key});// required this.currentFilters});
 //final Map<Filter,bool> currentFilters;
  // @override
@@ -103,7 +105,6 @@ class FiltersScreen extends ConsumerWidget {
             value: activeFilters[Filter.vegetarian]!,
             onChanged: (isChecked){
                          ref.read(filtersProvider.notifier).setFilter(Filter.vegetarian, isChecked);
-;
             },
             title: Text('Vegetarian', style: Theme.of(context).textTheme.titleLarge!.copyWith(
               color: Theme.of(context).colorScheme.primary,
